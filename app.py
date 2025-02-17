@@ -3,6 +3,10 @@ from summarizer import summarizer_text
 
 app = Flask(__name__)
 
+@app.route('/')
+def home():
+    return "Welcome to the Text Summarizer API! Use /summarize to summarize text."
+
 @app.route('/summarize', methods=['POST'])
 def summarize():
     data = request.get_json()
@@ -11,5 +15,5 @@ def summarize():
     return jsonify({"summary": summary})
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host="0.0.0.0", port=5000)
 
